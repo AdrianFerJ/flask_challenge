@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  api:
+    build:
+      context: ./flask-api
+      dockerfile: Dockerfile
+    volumes:
+      - './flask-api:/usr/src/app'
+    ports:
+      - 5001:5000
+    environment:
+      - FLASK_APP=api/__init__.py
+      - FLASK_ENV=development
+      - APP_SETTINGS=api.config.DevelopmentConfig
