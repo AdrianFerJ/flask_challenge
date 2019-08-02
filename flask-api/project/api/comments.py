@@ -1,12 +1,9 @@
 from flask import Flask, request, render_template, jsonify
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import reqparse, Api, Resource
 
 # Initiate app
-app = Flask(__name__)
-api = Api(app)
-
-# set config
-app.config.from_object('project.config.DevelopmentConfig')
+# app = Flask(__name__)
+# api = Api(app)
 
 # Temporary data
 COMMENTS = {
@@ -50,8 +47,4 @@ class CommentsList(Resource):
         return response_object, 201
 
 # Add routing
-api.add_resource(CommentsList, '/')
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# api.add_resource(CommentsList, '/comments')
