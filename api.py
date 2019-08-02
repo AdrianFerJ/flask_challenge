@@ -25,17 +25,16 @@ class CommentsList(Resource):
         # text = post_data.get('text')
 
         cm_id = int(max(COMMENTS.keys()).lstrip('cm')) + 1
-        cm_id = 'todo%i' % cm_id
+        cm_id = 'cm%i' % cm_id
 
-        # COMMENTS[cm_id] = {'title': args['title'], 'text' : args['text']}
-        # COMMENTS[cm_id] = {'title': title, 'text' : text},
+        COMMENTS[cm_id] = {'title': args['title'], 'text' : args['text']}
 
-        # response_object = {
-        #     'status': 'success',
-        #     'message': f'Comment {cm_id} was added!',
-        # }
-        # return response_object, 201
-        return args, 201
+        response_object = {
+            'status': 'success',
+            'message': f'Comment {cm_id} was added!',
+            'data': COMMENTS[cm_id]
+        }
+        return response_object, 201
 
 api.add_resource(CommentsList, '/')
 
