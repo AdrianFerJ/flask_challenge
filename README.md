@@ -28,3 +28,14 @@ r.status_code # 201
 r.json()
 # {'title': 'Any title', 'text': 'An appropirate text. Can be anything'}
 ```
+
+
+## Resources:
+* TestDriven.io Microservices [tutorial](https://testdriven.io/courses/microservices-with-docker-flask-and-react/part-one-postgres-setup/)
+* Flask project layout [Docs](https://flask.palletsprojects.com/en/1.1.x/tutorial/factory/)
+* Flask-Alchemy setup [Docs](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/)
+* MySQL + Alchemy configuration [StackOverflow](https://stackoverflow.com/questions/9845102/using-mysql-in-flask)
+* 
+
+## TODO
+* Enable entrypoint.sh in flask-api/Dockerfile, instead of `CMD python manage.py run -h 0.0.0.0`. This script will make sure the api service will wait for MySQL services to build, be up AND healthy. Need to fix Error: `standard_init_linux.go:211: exec user process caused "exec format error"` 
