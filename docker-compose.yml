@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
 
-  api:
+  server:
     build:
       context: ./flask-api
       dockerfile: Dockerfile
@@ -11,6 +11,6 @@ services:
     ports:
       - 5001:5000
     environment:
-      # - FLASK_APP=project/__init__.py
+      - FLASK_APP=project/__init__.py
       - FLASK_ENV=development
 
