@@ -8,18 +8,18 @@ from flask_sqlalchemy import SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # App configuration
-DATABASE = 'comments.db'
 DEBUG = True
-SECRET_KEY = 'ShhuperSecreto!'
 USERNAME = 'admin'
 PASSWORD = 'admin'
 
-# define the full path for the database
-DATABASE_PATH = os.path.join(basedir, DATABASE)
+# DATABASE = 'comments.db'
+# SECRET_KEY = 'ShhuperSecreto!'
 
-# database config
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
-SQLALCHEMY_TRACK_MODIFICATIONS = False
+# # database config
+# SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
+# # define the full path for the database
+# DATABASE_PATH = os.path.join(basedir, DATABASE)
+
 
 # Create App
 app = Flask(__name__)
