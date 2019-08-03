@@ -7,17 +7,45 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
 
+            // Set namespace to broadcast messages to
+            namespace = '/test';
+
+            // Connect to the Socket.IO server.
+            var socket = io(namespace)
+
+            // Event handler for new connections.
+            // A callback func used when a connection with server is established
+            socket.on('connect', function() {
+                socket.emit('my_event', {data: 'Connection established!'});
+            });
+
+            // Event handler for data is emited from the server
+            // Comments emited by the server are displayed in "Comments" section
+            socket.on('my_response', function(msg, cb) {
+                $('#comments-list').append('<br>' + $('<div/>').text('Received #' + msg.count + ': ' + msg.data).html());
+                if (cb)
+                    cb();
+            });
+
+            // Handlers from input from user and uses socket to emit data to server
+            $('form#comments').submit(function(event) {
+                socket.emit('my_comments_event', {data: $('#comments_data').val()});
+                return false;
+            });
+
+
+
         });
     </script>
 </head>
 <body>
     <h1>Comments App</h1>
     <h2>Comments</h2>
-    <div id="log"></div>   
+    <div id="comments-list"></div>   
     <h2>Leave a comment</h2>
-    <form id="broadcast" method="POST" action='#'>
-        <input type="text" name="broadcast_data" id="broadcast_data" placeholder="Message">
-        <input type="submit" value="Broadcast">
+    <form id="comments" method="POST" action='#'>
+        <input type="text" name="comments_data" id="comments_data" placeholder="Message">
+        <input type="submit" value="comments">
     </form>
     
 </body>
