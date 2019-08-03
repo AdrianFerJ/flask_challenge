@@ -14,3 +14,8 @@ requests==2.22.0
 six==1.12.0
 urllib3==1.25.3
 Werkzeug==0.15.5
+Flask-SocketIO==4.2.0
+python-socketio==4.3.0
+python-engineio==3.9.2
+# Flask-Login==0.4.1
+# Flask-Session==0.3.1
