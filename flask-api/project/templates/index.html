@@ -23,8 +23,9 @@
             // Event handler for data is emited from the server
             // Comments emited by the server are displayed in "Comments" section
             socket.on('my_response', function(msg, cb) {
-                $('#comments-list').append('<br>' + $('<div/>').text('Received #' + msg.count + ': ' + msg.data).html());
-                $('#entries').append($('<li/>').text('NEW!! #' + msg.count + ': ' + msg.data).html());
+                console.log('# Server response: ', msg);
+                // Append new comment (broadcasted) to Comments list
+                $('#entries').append('<li>NEW!!! ' + msg.count + "Message:" + msg.data + '</li>');
                 if (cb)
                     cb();
             });
@@ -35,7 +36,7 @@
                     title: $('#cm-title').val(),
                     text: $('#cm-text').val()
                 }
-                console.log(payload);
+                console.log('# Payload: ', payload);
                 socket.emit('my_comments_event', {data: payload});
                 return false;
             });
@@ -44,15 +45,13 @@
 </head>
 <body>
     <h1>Comments App</h1>
-    <h2>Comments</h2>
-    <div id="comments-list"></div> 
-    <h2> Comments 2</h2>  
+    <h2>Comments</h2> 
     <div>
-        <ul class="entries">
+        <ul id="entries" class="entries">
             {% for comment in entries %}
                 <li class="comment">
-                    <h2 id="{{ comment.uid }}">{{ comment.title }}</h2>
-                    {{ comment.text|safe }}</li>
+                    {{ comment.uid }} - {{ comment.title }} - {{ comment.text|safe }}
+                </li>
             {% endfor %}
         </ul>
     </div>
