@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Flask-SocketIO Test</title>
+    <title>Live-Comments</title>
     <script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
@@ -29,12 +29,14 @@
 
             // Handlers from input from user and uses socket to emit data to server
             $('form#comments').submit(function(event) {
-                socket.emit('my_comments_event', {data: $('#comments_data').val()});
+                payload = {
+                    title: $('#cm-title').val(),
+                    text: $('#cm-text').val()
+                }
+                console.log(payload);
+                socket.emit('my_comments_event', {data: payload});
                 return false;
             });
-
-
-
         });
     </script>
 </head>
@@ -44,7 +46,8 @@
     <div id="comments-list"></div>   
     <h2>Leave a comment</h2>
     <form id="comments" method="POST" action='#'>
-        <input type="text" name="comments_data" id="comments_data" placeholder="Message">
+        <input type="text" name="cm-title" id="cm-title" placeholder="Title">
+        <input type="text" name="cm-text" id="cm-text" placeholder="Comment">
         <input type="submit" value="comments">
     </form>
     

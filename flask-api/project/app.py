@@ -20,10 +20,17 @@ def index():
 
 @socketio.on('my_comments_event', namespace='/test')
 def broadcast_comments(message):
-    """ Namespace channel to recieve and emit comments from and to client"""
+    """ Namespace channel to recieve and emit new comments from & to client"""
+    
     session['receive_count'] = session.get('receive_count', 0) + 1
+
+    # Parse message
+    title = message['data']['title']
+    text = message['data']['text']
+    payload = title + ', ' + text
+
     emit('my_response',
-         {'data': message['data'], 'count': session['receive_count']},
+         {'data': payload, 'count': session['receive_count']},
          broadcast=True)
 
 
