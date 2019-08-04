@@ -7,7 +7,7 @@ class Comments(db.Model):
     __tablename__ = "comments"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    text = db.Column(db.String, nullable=False)
+    text = db.Column(db.String(400), nullable=False)
     username = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
     pub_date = db.Column(db.DateTime, default=datetime.utcnow())

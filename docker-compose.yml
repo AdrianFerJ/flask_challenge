@@ -15,12 +15,16 @@ services:
       - FLASK_ENV=development
       - FLASK_DEBUG=1
       # - APP_SETTINGS=project.config.DevelopmentSqliteConfig
-      - APP_SETTINGS=project.config.DevelopmentMyqlConfig
+      - APP_SETTINGS=config.DevelopmentMysqlConfig
+      - DATABASE_URL=mysql+pymysql://admin:admin@flask-db/comments_dev
     links:
       - flask-db
 
   flask-db:
-    image: mysql:5.7
+    # image: mysql:5.7
+    build:
+      context: ./flask-com/db
+      dockerfile: Dockerfile
     restart: always
     environment:
       - MYSQL_DATABASE=comments_dev

@@ -19,21 +19,21 @@ class DevelopmentSqliteConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
 
 
-class DevelopmentMyqlConfig(BaseConfig):
+class DevelopmentMysqlConfig(BaseConfig):
     """Development configuration"""
-    # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') 
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') 
     # DB_NAME = os.environ['DB_DATABASE']
     # DB_USERNAME = os.environ['DB_USERNAME']
     # DB_PASSWORD = os.environ['DB_PASSWORD']
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + os.environ['DB_USERNAME'] \
-        + ':' + os.environ['DB_PASSWORD'] + '@' + os.environ['DB_HOST'] \
-        + ":3306/" + os.environ['DB_DATABASE']
+    # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + os.environ['DB_USERNAME'] \
+    #     + ':' + os.environ['DB_PASSWORD'] + '@' + os.environ['DB_HOST'] \
+    #     + ":3306/" + os.environ['DB_DATABASE']
     
 
-class ProductionConfig(BaseConfig):
-    """Production configuration"""
-    DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') 
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + os.environ['DB_USERNAME'] \
-        + ':' + os.environ['DB_PASSWORD'] + '@' + os.environ['DB_HOST'] \
-        + ":3306/" + os.environ['DB_DATABASE']
+# class ProductionConfig(BaseConfig):
+#     """Production configuration"""
+#     DEBUG = False
+#     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') 
+#     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + os.environ['DB_USERNAME'] \
+#         + ':' + os.environ['DB_PASSWORD'] + '@' + os.environ['DB_HOST'] \
+#         + ":3306/" + os.environ['DB_DATABASE']
