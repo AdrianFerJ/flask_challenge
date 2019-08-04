@@ -65,4 +65,6 @@ r.json()
 # {'title': 'Any title', 'text': 'An appropirate text. Can be anything'}
 ```
 
+## Thanks to this good resources
 
+- Easy WebSockets with Flask and Gevent [blog](https://blog.miguelgrinberg.com/post/easy-websockets-with-flask-and-gevent)
