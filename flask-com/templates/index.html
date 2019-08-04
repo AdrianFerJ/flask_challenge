@@ -32,13 +32,19 @@
                 <div class="comments-list">
                     <h2>Comments</h2> 
                     <div>
-                        <ul id="entries" class="list-group">
+                        <table class="table table-striped"  id="entries">
+                            <tbody>
                             {% for comment in entries %}
-                                <li class="comment list-group-item">
-                                    {{ comment.id }}) {{ comment.username }} ({{ comment.email }}) - {{ comment.text|safe }}
-                                </li>
+                                <tr>
+                                    <td scope="row">
+                                        {{ '{:%d %B %Y}'.format(comment.pub_date) }} <br>
+                                        by <a href="mailto:{{ comment.email }}">{{ comment.username }}</a>
+                                    </th>
+                                    <td>{{ comment.text|safe }}</td>
+                                </tr>
                             {% endfor %}
-                        </ul>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="form-div">
