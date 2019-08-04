@@ -2,66 +2,65 @@
 <html>
 <head>
     <title>Live-Comments</title>
-    <link rel="stylesheet" type="text/css" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <!-- My style -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Socket IO -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() {
 
-            // Set namespace to broadcast messages to
-            namespace = '/test';
+    <!-- Websocket -->
+    <script type="text/javascript" src="{{url_for('static', filename='main.js') }}"></script>
 
-            // Connect to the Socket.IO server.
-            var socket = io(namespace)
-
-            // Event handler for new connections.
-            // A callback func used when a connection with server is established
-            socket.on('connect', function() {
-                socket.emit('my_event', {data: 'Connection established!'});
-            });
-
-            // Event handler for data is emited from the server
-            // Comments emited by the server are displayed in "Comments" section
-            socket.on('comment_created', function(msg, cb) {
-                console.log('# Server response: ', msg);
-                // Append new comment (broadcasted) to Comments list
-                $('#entries').append('<li>NEW!!! ' + msg.count + "Message:" + msg.data.username + '</li>');
-                if (cb)
-                    cb();
-            });
-
-            // Handlers from input from user and uses socket to emit data to server
-            $('form#comments').submit(function(event) {
-                payload = {
-                    username: $('#cm-title').val(),
-                    email: $('#cm-title').val(),
-                    text: $('#cm-text').val()
-                }
-                console.log('# Payload: ', payload);
-                socket.emit('my_comments_event', {data: payload});
-                return false;
-            });
-        });
-    </script>
 </head>
 <body>
-    <h1>Comments App</h1>
-    <h2>Comments</h2> 
-    <div>
-        <ul id="entries" class="entries">
-            {% for comment in entries %}
-                <li class="comment">
-                    {{ comment.id }}) {{ comment.username }} ({{ comment.username }}) - {{ comment.text|safe }}
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                <div class="comments-list">
+                    <h2>Comments</h2> 
+                    <div>
+                        <ul id="entries" class="list-group">
+                            {% for comment in entries %}
+                                <li class="comment list-group-item">
+                                    {{ comment.id }}) {{ comment.username }} ({{ comment.email }}) - {{ comment.text|safe }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-div">
+                    <h2>Leave a comment</h2>
+                    <form id="comments" method="POST">
+                    <div class="form-group">
+                        <label for="cm-name">Your Name</label>
+                        <input type="text" class="form-control" id="cm-username" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" class="form-control" id="cm-email" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="cm-text">Your Comment</label>
+                        <textarea type="text" class="form-control" id="cm-text" placeholder="Enter comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" value="comments">Submit</button>
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
-    <h2>Leave a comment</h2>
-    <form id="comments" method="POST" action='#'>
-        <input type="text" name="cm-title" id="cm-title" placeholder="Title">
-        <input type="text" name="cm-text" id="cm-text" placeholder="Comment">
-        <input type="submit" value="comments">
-    </form>
-    
 </body>
 </html>
