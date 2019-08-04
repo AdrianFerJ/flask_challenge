@@ -12,10 +12,11 @@ app = Flask(__name__)
 
 
 # App Config
-from config import DevelopmentConfig, DockerDevelopmentConfig
-# app_settings = os.getenv('APP_SETTINGS')
-# app.config.from_object(app_settings)
-app.config.from_object(DevelopmentConfig)
+# from config import DevelopmentSqliteConfig, DevelopmentMyqlConfig
+# app.config.from_object(DevelopmentConfig)
+app_settings = os.getenv('APP_SETTINGS')
+app.config.from_object(app_settings)
+
 
 
 db = SQLAlchemy(app)

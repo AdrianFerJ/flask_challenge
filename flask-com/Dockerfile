@@ -6,6 +6,9 @@ RUN apk update && \
     apk add --virtual build-deps gcc python-dev musl-dev && \
     apk add netcat-openbsd
 
+# Expose port 5000 for Flask (instead of doing this in composer or config file)
+EXPOSE 5000
+
 # set working directory
 WORKDIR /usr/src/app
 

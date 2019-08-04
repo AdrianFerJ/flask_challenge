@@ -14,4 +14,23 @@ services:
       - FLASK_APP=app.py
       - FLASK_ENV=development
       - FLASK_DEBUG=1
+      # - APP_SETTINGS=project.config.DevelopmentSqliteConfig
+      - APP_SETTINGS=project.config.DevelopmentMyqlConfig
+    links:
+      - flask-db
 
+  flask-db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_DATABASE=comments_dev
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    volumes:
+      - flask-db:/var/lib/mysql
+
+volumes:
+  flask-db:

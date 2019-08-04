@@ -16,7 +16,7 @@ The challenge :
 
 ## Setup for development
 
-*Note* Run from flask-app project
+*Note* Run from flask-app project using Python virtual env
 
 ```bash
 # set virtual env
@@ -55,3 +55,11 @@ $ docker-compose logs
 # If succesfull, it will display the port where app is running:
 # server_1    |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
+
+## Thanks to these great resources
+
+- Flaskr tutorial [mjhea0](https://github.com/mjhea0/flaskr-tdd#add-some-color)
+- Websockets with flask and jQuery in the forntend[miguel grinberg](https://blog.miguelgrinberg.com/post/easy-websockets-with-flask-and-gevent)
+- Dockerizing flask and a more complex project layout [tdd.io](https://testdriven.io/courses/microservices-with-docker-flask-and-react/part-one-getting-started/)
+- MySQL config (grr) [docker-docs](https://docs.docker.com/samples/library/mysql/) [Max Goh](https://medium.com/free-code-camp/how-to-develop-a-flask-graphql-graphene-mysql-and-docker-starter-kit-4d475f24ee76) [Stav Shamir](https://medium.com/@shamir.stav_83310/dockerizing-a-flask-mysql-app-with-docker-compose-c4f51d20b40d)
+- And of course the Docs for Flask, sql-alchemy, socketio, flask-socketio, etc. as well as a few other resources that helped me in one or another way.
