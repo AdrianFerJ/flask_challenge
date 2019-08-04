@@ -23,8 +23,21 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Create App
 app = Flask(__name__)
+
+"""
+    APP CONFIG!!!
+"""
 # app.config['SECRET_KEY'] = SECRET_KEY
-app.config.from_object(__name__)
+# app.config.from_object(__name__)
+
+from config import DevelopmentConfig, DockerDevelopmentConfig
+# from config import 
+
+# app_settings = os.getenv('APP_SETTINGS')
+# app.config.from_object(app_settings)
+app.config.from_object(DevelopmentConfig)
+
+
 db = SQLAlchemy(app)
 
 import models
