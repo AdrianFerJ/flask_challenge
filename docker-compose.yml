@@ -13,11 +13,10 @@ services:
     environment:
       - FLASK_APP=project/__init__.py
       - FLASK_ENV=development
-      - APP_SETTINGS=project.config.DevelopmentConfig
-      # - APP_SETTINGS=project.config.DevSqliteConfig
+      # - APP_SETTINGS=project.config.DevelopmentConfig
+      - APP_SETTINGS=project.config.DevSqliteConfig
       - DATABASE_URL=mysql+pymysql://admin:admin@mysql-db/comments_dev
-      # - DATABASE_URL=mysql://admin:admin@mysql-db/comments_dev
-      - DATABASE_TEST_URL=mysql://admin:admin@mysql-db/comments_test
+      # - DATABASE_TEST_URL=mysql+pymysql://admin:admin@mysql-db/comments_test
     depends_on:
       - mysql-db
 
