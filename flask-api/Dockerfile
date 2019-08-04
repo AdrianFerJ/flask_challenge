@@ -10,18 +10,21 @@ RUN apk update && \
 WORKDIR /usr/src/app
 
 # add and install requirements
-COPY ./project/requirements.txt /usr/src/app/requirements.txt
+COPY ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
 # add entrypoint.sh
 # COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 # RUN chmod +x /usr/src/app/entrypoint.sh
 
+RUN python --version
+RUN pip --version
+
 # add app
 COPY . /usr/src/app
 
 # run server
-# CMD python project/app.py 
-CMD python project/app.py run -h 127.0.0.1:5000 
+CMD python test_app.py 
+# CMD python app.py run -h 127.0.0.1:5000 
 # TODO : Replace above command with this. See TODO seaction in readme
 # CMD ["/usr/src/app/entrypoint.sh"]
