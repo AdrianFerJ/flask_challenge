@@ -19,14 +19,13 @@ class BasicTestCase(unittest.TestCase):
 
     def test_commments_db_exists(self):
         """initial test. ensure that the database exists"""
-        print('# HERE', os.listdir())
         tester = os.path.exists("comments.db")
         self.assertTrue(tester)
     
-    # def test_test_db_exists(self):
-    #     """initial test. ensure that the database exists"""
-    #     tester = os.path.exists(TEST_DB)
-    #     self.assertTrue(tester)
+    def test_test_db_exists(self):
+        """initial test. ensure that the database exists"""
+        tester = os.path.exists(TEST_DB)
+        self.assertTrue(tester)
 
 
 class CommentsTestCase(unittest.TestCase):
