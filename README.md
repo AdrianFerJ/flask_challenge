@@ -1,10 +1,46 @@
 # flask_challenge
 Flask App
 
+## Setup for development
+
+*Note* Run from flask-app project
+
+```bash
+# set virtual env
+$ python3.7 -m venv env
+$ source env/bin/activate
+
+# install requirements
+$ (env) pip install -r requirements.txt
+
+# Create db (Sqlite) -> comments.db
+$ (env) python create_db.py
+
+# Run App
+$ python app.py
+
+# Run tests (app shouldn't be running)
+$ python test_app.py
+```
+
+## Run App with Docker
+
+*Note* Run from root project
+
+```bash
+# Build containers using composer
+$ docker-compose build
+
+# Start services (add -d to run detached)
+$ docker-compose up
+# If succesfull, it will display (in logs):
+# server_1    |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
 
 ## API usage example
 
 * Run commands in python (make sure to `import requests`).
+
 
 ### Get all comments
 
@@ -28,3 +64,5 @@ r.status_code # 201
 r.json()
 # {'title': 'Any title', 'text': 'An appropirate text. Can be anything'}
 ```
+
+

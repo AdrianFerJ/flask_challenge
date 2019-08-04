@@ -4,10 +4,10 @@ services:
 
   server:
     build:
-      context: ./flask-api
+      context: ./flask-app
       dockerfile: Dockerfile
     volumes:
-      - './flask-api:/usr/src/app'
+      - './flask-app:/usr/src/app'
     ports:
       - 5001:5000
     environment:
@@ -22,7 +22,7 @@ services:
 
   mysql-db:
     build:
-      context: ./flask-api/project/db
+      context: ./flask-app/project/db
       dockerfile: Dockerfile
     restart: always
     ports:
