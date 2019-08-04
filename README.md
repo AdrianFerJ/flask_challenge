@@ -1,11 +1,17 @@
 # flask_challenge
 
 The challenge :
+
 [-]  Prepare on docker a MySQL (for comments) *BUG* Docker image is set, but can't get Flask to migrate model to db. Temporarily witched back to an old sqlite db for demo.
+
 [X] Prepare a web server (on Docker) to Host a comment website where people will have a section to post comments. Backend is Flask.
+
 [-] Create a front end can be generated with Flask or be on Angular or React. *Incomplete* 
+
 [x] Use websockets to enable live updates (When comments are posted, they will be displayed on the website instantly. If I open two tabs in my browser I should be able to see the previous feed and see live what’s happening.
+
 [] If user clicks on the name of someone (list of comments) it will trigger a mailto hyperlink
+
 [] Host docker image on docker hub
 
 ## Setup for development
