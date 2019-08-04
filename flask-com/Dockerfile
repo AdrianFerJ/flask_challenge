@@ -19,6 +19,5 @@ COPY . /usr/src/app
 # run server
 # CMD python test_app.py 
 CMD python app.py
-# CMD python app.py run -h 127.0.0.1:5000 
 # TODO : Replace above command with this. See TODO seaction in readme
 # CMD ["/usr/src/app/entrypoint.sh"]

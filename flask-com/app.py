@@ -48,19 +48,30 @@ def add_new_comments(message):
 
     # Parse message
     # TODO add form data validation
-    title = message['data']['title']
+    username = message['data']['username']
     text = message['data']['text']
-    payload = title + ', ' + text
+    email = message['data']['email']
 
     # Add new comment to db
-    new_comment = models.Comments(title=title, text=text)
+    #TODO add (TRY) and handle failled cm creation. Send diff message and status
+    new_comment = models.Comments(username=username, text=text, email=email)
     db.session.add(new_comment)
     db.session.commit()
 
+    # Generate message if succesful comment creation    
+    return_data = {
+        'id': new_comment.id,
+        'email': new_comment.email, 
+        'username': new_comment.username,
+        'text': new_comment.text, 
+    }
+    return_status = 'comment_created' #'Comment created!'
+
     # Emit response
-    emit('my_response',
-         {'data': payload, 'count': session['receive_count']},
-         broadcast=True)
+    emit(return_status,
+        {'data': return_data, 'count': session['receive_count']},
+        # {'data': return_data, 'count': session['receive_count']},
+        broadcast=True)
 
 
 if __name__ == '__main__':

@@ -22,10 +22,10 @@
 
             // Event handler for data is emited from the server
             // Comments emited by the server are displayed in "Comments" section
-            socket.on('my_response', function(msg, cb) {
+            socket.on('comment_created', function(msg, cb) {
                 console.log('# Server response: ', msg);
                 // Append new comment (broadcasted) to Comments list
-                $('#entries').append('<li>NEW!!! ' + msg.count + "Message:" + msg.data + '</li>');
+                $('#entries').append('<li>NEW!!! ' + msg.count + "Message:" + msg.data.username + '</li>');
                 if (cb)
                     cb();
             });
@@ -33,7 +33,8 @@
             // Handlers from input from user and uses socket to emit data to server
             $('form#comments').submit(function(event) {
                 payload = {
-                    title: $('#cm-title').val(),
+                    username: $('#cm-title').val(),
+                    email: $('#cm-title').val(),
                     text: $('#cm-text').val()
                 }
                 console.log('# Payload: ', payload);
@@ -50,7 +51,7 @@
         <ul id="entries" class="entries">
             {% for comment in entries %}
                 <li class="comment">
-                    {{ comment.uid }} - {{ comment.title }} - {{ comment.text|safe }}
+                    {{ comment.id }}) {{ comment.username }} ({{ comment.username }}) - {{ comment.text|safe }}
                 </li>
             {% endfor %}
         </ul>
