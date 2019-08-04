@@ -12,7 +12,7 @@ The challenge :
 
 [X] If user clicks on the name of someone (list of comments) it will trigger a mailto hyperlink
 
-[] Host docker image on docker hub
+[-] Host docker image on docker hub. I'm hosting both images ([flask](https://cloud.docker.com/u/dukdocker/repository/docker/dukdocker/comments_flask) and [mysql](https://cloud.docker.com/repository/docker/dukdocker/comments_db/general)) but automatic Model migrations to MySQL isn't quite working yet. I tried to use a script to make flask service wait for mysql to be up and running before running migrations, but this isn't ready yet. Instead, we have to use an additional docker command to make the migrations manually, after the services are up. I believe this is why simply using docker-compose-prod.yml (that takes these images) won't run. All things considered, it's there.
 
 ## Setup for development
 
