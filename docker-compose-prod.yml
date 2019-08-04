@@ -3,9 +3,7 @@ version: '3.7'
 services:
 
   server:
-    build:
-      context: ./flask-com
-      dockerfile: Dockerfile
+    image: dukdocker/comments_flask:sunday
     volumes:
       - './flask-com:/usr/src/app'
     ports:
@@ -14,21 +12,16 @@ services:
       - FLASK_APP=app.py
       - FLASK_ENV=development
       - FLASK_DEBUG=1
-      # - APP_SETTINGS=project.config.DevelopmentSqliteConfig
-      - APP_SETTINGS=config.DevelopmentMysqlConfig
-      - DATABASE_URL=mysql+pymysql://admin:admin@flask-db/comments_dev
-      
+      - APP_SETTINGS=config.ProductionConfig
+      - DATABASE_URL=mysql+pymysql://admin:admin@flask-db/comments_prod
     links:
       - flask-db
 
   flask-db:
-    # image: mysql:5.7
-    build:
-      context: ./flask-com/db
-      dockerfile: Dockerfile
+    image: dukdocker/comments_db:sunday
     restart: always
     environment:
-      - MYSQL_DATABASE=comments_dev
+      - MYSQL_DATABASE=comments_prod
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=admin
       - MYSQL_ROOT_PASSWORD=root
