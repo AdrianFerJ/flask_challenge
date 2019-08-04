@@ -1,30 +1,57 @@
 # flask_challenge
-Flask App
 
+The challenge :
 
-## API usage example
+[-]  Prepare on docker a MySQL (for comments) *BUG* Docker image is set, but can't get Flask to migrate model to db. Temporarily witched back to an old sqlite db for demo.
 
-* Run commands in python (make sure to `import requests`).
+[X] Prepare a web server (on Docker) to Host a comment website where people will have a section to post comments. Backend is Flask.
 
-### Get all comments
+[X] Create a front end can be generated with Flask or be on Angular or React.
 
-```python
-URL = 'http://localhost:5000/'
-r = requests.get(URL)
-r.status_code # 200
-r.json()
-# {'cm1': {'title': 'First comment', 'text': 'first text'}, 'cm2': {'title': '2nd comment', 'text': 'not much text'}, 'cm3': {'title': 'No title?', 'text': '???'}}
+[x] Use websockets to enable live updates (When comments are posted, they will be displayed on the website instantly. If I open two tabs in my browser I should be able to see the previous feed and see live what’s happening.
+
+[X] If user clicks on the name of someone (list of comments) it will trigger a mailto hyperlink
+
+[] Host docker image on docker hub
+
+## Setup for development
+
+*Note* Run from flask-app project
+
+```bash
+# set virtual env
+$ python3.7 -m venv env
+$ source env/bin/activate
+
+# install requirements
+$ (env) pip install -r requirements.txt
+
+# Create db (Sqlite) -> comments.db
+$ (env) python create_db.py
+
+# Run App
+$ python app.py
+
+# Run tests (app shouldn't be running)
+$ python test_app.py
 ```
 
-### Post new comment
+## Run App with Docker
 
-```python
-new_comment = json.dumps({
-    'title': 'Any title',
-    'text' : 'An appropirate text. Can be anything'
-})
-r = requests.post(URL, data = new_comment)
-r.status_code # 201
-r.json()
-# {'title': 'Any title', 'text': 'An appropirate text. Can be anything'}
+*Note* Run from root project
+
+```bash
+# Build containers using composer
+$ docker-compose build
+
+# Start services (add -d to run detached)
+$ docker-compose up
+
+# Run tests
+$ docker-compose exec server python test_app.py
+
+# Check logs (if running detached)
+$ docker-compose logs
+# If succesfull, it will display the port where app is running:
+# server_1    |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
