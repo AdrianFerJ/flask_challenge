@@ -7,12 +7,11 @@ class BaseConfig:
     SQLALCHEMY_TRACK_MODIFICATIONS = False 
 
 
-class DeveLocalDBConfig(BaseConfig):
+class DevSqliteConfig(BaseConfig):
     """Development configuration"""
-    # get base directory where this file runs
+    # define the full path for the db (same lvl as this file)
     basedir = os.path.abspath(os.path.dirname(__file__))
     DATABASE = 'comments.db'
-    # define the full path for the database
     DATABASE_PATH = os.path.join(basedir, DATABASE)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
 
