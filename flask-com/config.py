@@ -4,6 +4,9 @@ class BaseConfig:
     """Base configuration"""
     SECRET_KEY = 'ShhuperSecreto!'
     TESTING = False
+    DEBUG = True
+    USERNAME = 'admin'
+    PASSWORD = 'admin'
     SQLALCHEMY_TRACK_MODIFICATIONS = False 
 
 

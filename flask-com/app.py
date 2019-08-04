@@ -4,34 +4,14 @@ from flask import Flask, render_template, session
 from flask_socketio import SocketIO, emit
 from flask_sqlalchemy import SQLAlchemy
 
-# get base directory where this file runs
-basedir = os.path.abspath(os.path.dirname(__file__))
 
-# App configuration
-DATABASE = 'comments.db'
-DEBUG = True
-SECRET_KEY = 'ShhuperSecreto!'
-USERNAME = 'admin'
-PASSWORD = 'admin'
-
-# define the full path for the database
-DATABASE_PATH = os.path.join(basedir, DATABASE)
-
-# database config
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
-SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Create App
 app = Flask(__name__)
 
-"""
-    APP CONFIG!!!
-"""
-# app.config['SECRET_KEY'] = SECRET_KEY
-# app.config.from_object(__name__)
 
+# App Config
 from config import DevelopmentConfig, DockerDevelopmentConfig
-# from config import 
 
 # app_settings = os.getenv('APP_SETTINGS')
 # app.config.from_object(app_settings)
@@ -50,7 +30,6 @@ async_mode = None
 socketio = SocketIO(app, async_mode=async_mode)
 thread = None
 thread_lock = Lock()
-
 
 
 @app.route('/')
