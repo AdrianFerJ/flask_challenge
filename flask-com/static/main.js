@@ -18,7 +18,11 @@ $(document).ready(function() {
         console.log('# Server response: ', msg);
         // Append new comment (broadcasted) to Comments list
         const newComment = msg.data.id + ' ' + msg.data.email + ' ' + msg.data.username;
-        $('#entries').append('<li class="comment list-group-item">' + newComment + '</li>');
+        $('#entries').append(
+            '<tr><td scope="row">' + msg.data.pub_date + '<br> by <a href="mailto:' + msg.data.email + '">' + msg.data.username + '</th>' +
+            '<td>'  + msg.data.text + '</td></tr>'
+        );
+            // '<li class="comment list-group-item">' + newComment + '</li>');
         if (cb)
             cb();
     });

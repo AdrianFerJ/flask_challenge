@@ -1,4 +1,5 @@
 import os
+import datetime as dt
 from threading import Lock
 from flask import Flask, render_template, session 
 from flask_socketio import SocketIO, emit
@@ -64,6 +65,7 @@ def add_new_comments(message):
         'email': new_comment.email, 
         'username': new_comment.username,
         'text': new_comment.text, 
+        'pub_date': '{:%d %B %Y}'.format(new_comment.pub_date)
     }
     return_status = 'comment_created' #'Comment created!'
 

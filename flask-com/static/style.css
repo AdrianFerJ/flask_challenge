@@ -1,47 +1,30 @@
 body {
     font-family: sans-serif;
+    padding: 2%;
     /* background: #eee; */
   }
   
-  a, h2 {
-    color: #377BA8;
+  a {
+    color: #be4554;
   }
   
   h2 {
+    /* color: #377BA8; */
     margin: 5px;
   }
 
   .comments-list div {
-    margin: 10px;
+    margin: 5px;
   }
 
   .form-div div {
-    margin: 10px;
+    margin: 5px;
   }
   
-  .entries {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .entries li {
-    margin: 0.8em 1.2em;
-  }
-  
-  .entries li h2 {
-    margin-left: -1em;
-  }
-  
-  .add-entry {
-    font-size: 0.9em;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .add-entry dl {
-    font-weight: bold;
-  }
-    
+  #entries tr td:nth-child(1) {
+    width:30%;
+ }
+   
   .error {
     background: #F0D6D6;
     padding: 0.5em;
