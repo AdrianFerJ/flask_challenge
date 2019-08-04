@@ -16,11 +16,21 @@ WORKDIR /usr/src/app
 COPY ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
+# add entrypoint.sh
+# This makes flask service wait for db before running and migrating
+# COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+# RUN chmod +x /usr/src/app/entrypoint.sh
+# TEmporarily, run this instead:
+# RUN python create_db.py
+
 # add app
 COPY . /usr/src/app
+
 
 # run server
 # CMD python test_app.py 
 CMD python app.py
-# TODO : Replace above command with this. See TODO seaction in readme
+
+# TODO : Replace above command with this after fixing Error:
+# standard_init_linux.go:211: exec user process caused "exec format error"
 # CMD ["/usr/src/app/entrypoint.sh"]

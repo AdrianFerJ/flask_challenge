@@ -2,7 +2,7 @@
 
 The challenge :
 
-[-]  Prepare on docker a MySQL (for comments) *BUG* Docker image is set, but can't get Flask to migrate model to db. Temporarily witched back to an old sqlite db for demo.
+[X]  Prepare on docker a MySQL (for comments) *BUG* Docker image is set, but can't get Flask to migrate model to db. Temporarily witched back to an old sqlite db for demo.
 
 [X] Prepare a web server (on Docker) to Host a comment website where people will have a section to post comments. Backend is Flask.
 
@@ -47,13 +47,16 @@ $ docker-compose build
 # Start services (add -d to run detached)
 $ docker-compose up
 
-# Run tests
-$ docker-compose exec server python test_app.py
-
 # Check logs (if running detached)
 $ docker-compose logs
 # If succesfull, it will display the port where app is running:
 # server_1    |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+
+# Migreate Model (MySQL services has to be live)
+$ docker-compose exec server python create_db.py
+
+# Run tests
+$ docker-compose exec server python test_app.py
 ```
 
 ## Thanks to these great resources

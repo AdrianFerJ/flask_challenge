@@ -21,7 +21,6 @@ app.config.from_object(app_settings)
 
 db = SQLAlchemy(app)
 
-
 import models
 
 # Enable async_mode in convination with "eventlet" or "gevent"
