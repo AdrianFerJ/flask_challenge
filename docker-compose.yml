@@ -4,10 +4,10 @@ services:
 
   server:
     build:
-      context: ./flask-api
+      context: ./flask-com
       dockerfile: Dockerfile
     volumes:
-      - './flask-api:/usr/src/app'
+      - './flask-com:/usr/src/app'
     ports:
       - 5001:5000
     # environment:
