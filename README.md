@@ -67,4 +67,6 @@ r.json()
 
 ## Thanks to this good resources
 
-- Easy WebSockets with Flask and Gevent [blog](https://blog.miguelgrinberg.com/post/easy-websockets-with-flask-and-gevent)
+* Easy WebSockets with Flask and Gevent [blog](https://blog.miguelgrinberg.com/post/easy-websockets-with-flask-and-gevent)
+
+*  

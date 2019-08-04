@@ -3,11 +3,16 @@
 <head>
     <title>Live-Comments</title>
 
-    <<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- Socket IO -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+
+    
 
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
@@ -29,7 +34,7 @@
             socket.on('my_response', function(msg, cb) {
                 console.log('# Server response: ', msg);
                 // Append new comment (broadcasted) to Comments list
-                $('#entries').append('<li>NEW!!! ' + msg.count + "Message:" + msg.data + '</li>');
+                $('#entries').append('<li class="comment list-group-item">' + msg.data + '</li>');
                 if (cb)
                     cb();
             });
@@ -37,7 +42,7 @@
             // Handlers from input from user and uses socket to emit data to server
             $('form#comments').submit(function(event) {
                 payload = {
-                    title: $('#cm-title').val(),
+                    title: $('#cm-name').val(),
                     text: $('#cm-text').val()
                 }
                 console.log('# Payload: ', payload);
@@ -69,6 +74,22 @@
                 <input type="text" name="cm-title" id="cm-title" placeholder="Title">
                 <input type="text" name="cm-text" id="cm-text" placeholder="Comment">
                 <input type="submit" value="comments">
+            </form>
+            <form id="comments" method="POST">
+                <div class="form-group">
+                    <label for="cm-name">Your Name</label>
+                    <input type="text" class="form-control" id="cm-name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" class="form-control" id="cm-email" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="cm-text">Your Comment</label>
+                    <textarea type="text" class="form-control" id="cm-text" placeholder="Enter comment"></textarea>
+                </div>
+                <input type="submit" value="comments">
+                <button type="submit" class="btn btn-primary" value="comments">Submit</button>
             </form>
             <div class="col-sm-2">
             </div>
