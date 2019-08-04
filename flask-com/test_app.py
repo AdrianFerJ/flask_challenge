@@ -53,14 +53,19 @@ class CommentsTestCase(unittest.TestCase):
         """Check that GET method returns all objects from DB"""
         tester = app.test_client(self)
 
-        # Create fake entry
-        nc = Comments(title='Test title', text='much more text')
-        db.session.add(nc)
-        db.session.commit()
-
         rv = tester.get('/', content_type='html/text')
         self.assertEqual(rv.status_code, 200)
-        self.assertIn(b'Test title', rv.data)
+        self.assertNotIn(b'Lupo2', rv.data)
+
+        # Create fake entry
+        nc = Comments(
+            username='Lupo2', text='Yeah, still more food plz', email='lupo2@hr.com')
+        db.session.add(nc)
+        db.session.commit()
+        
+        rv = tester.get('/', content_type='html/text')
+        self.assertEqual(rv.status_code, 200)
+        self.assertIn(b'Lupo2', rv.data)
     
     # TODO test add_new_comments() functionality 
     
