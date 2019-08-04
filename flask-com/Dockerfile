@@ -13,34 +13,12 @@ WORKDIR /usr/src/app
 COPY ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
-# add entrypoint.sh
-# COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-# RUN chmod +x /usr/src/app/entrypoint.sh
-
-RUN python --version
-RUN pip --version
-
 # add app
 COPY . /usr/src/app
 
 # run server
-CMD python test_app.py 
+# CMD python test_app.py 
+CMD python app.py
 # CMD python app.py run -h 127.0.0.1:5000 
 # TODO : Replace above command with this. See TODO seaction in readme
 # CMD ["/usr/src/app/entrypoint.sh"]
-
-
-# FROM python:3.7
-
-# COPY . /app
-
-# WORKDIR /app
-
-# RUN python --version 
-
-# RUN pip install -r requirements.txt
-
-# ENTRYPOINT ["python"]
-
-# CMD ["app.py"]
-# CMD ["test_app.py"]

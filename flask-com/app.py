@@ -12,13 +12,13 @@ app = Flask(__name__)
 
 # App Config
 from config import DevelopmentConfig, DockerDevelopmentConfig
-
 # app_settings = os.getenv('APP_SETTINGS')
 # app.config.from_object(app_settings)
 app.config.from_object(DevelopmentConfig)
 
 
 db = SQLAlchemy(app)
+
 
 import models
 
@@ -64,4 +64,4 @@ def add_new_comments(message):
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True)
